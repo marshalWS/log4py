@@ -13,6 +13,14 @@ class Logger:
         self.logger = logging.getLogger(self.log_file_path)
         self.logger.setLevel(level)
 
+        # 当self.log_file_path相同时，会重复添加handler 导致多次写入
+        if not self.logger.handlers:
+            self.addHandler()
+
+        self.package_name = self.get_package_name()
+
+    def addHandler(self):
+
         # 设置文件日志大小、备份个数
         back_count = int(log_backup_count())
         log_max_size = int(log_max_size_config()) * 1024 * 1024
@@ -25,7 +33,7 @@ class Logger:
         # 配置level 默认输出notset以上的
         fh.setLevel(level_config(default="NOTSET"))
         self.logger.addHandler(fh)
-        self.package_name = self.get_package_name()
+
 
     def get_package_name(self):
         p_name = os.getcwd().split("\\")[-1]
@@ -34,3 +42,8 @@ class Logger:
             return "%s-%s" % (p_name, f_name)
         else:
             return f_name
+
+
+if __name__ == "__main__":
+    p_name = os.getcwd()
+    print(" p_name = ", p_name)
