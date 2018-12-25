@@ -1,0 +1,14 @@
+<collection shelf="logging">
+
+    <logging title="config">
+        <!-- NOTSET < debug < info < warn < error < critical -->
+        <level>debug</level>uw
+
+        <!-- log 日志文件最大值 单位:M-->
+        <max_size_m>2</max_size_m>
+
+        <!-- 备份的文件数-->
+        <backup_count>5</backup_count>
+    </logging>
+
+</collection>
