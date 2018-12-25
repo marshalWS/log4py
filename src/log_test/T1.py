@@ -5,7 +5,7 @@ from src.logger_factory import LoggerFactory
 
 class T1:
     def __init__(self):
-        self.logger = LoggerFactory()
+        self.logger = LoggerFactory("T1.class")
 
     def __run(self, i):
         self.logger.debug("debug " + str(i) + " -------------------")
